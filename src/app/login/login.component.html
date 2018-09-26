@@ -1,23 +1,23 @@
 <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
-  <div nz-form-item>
-    <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
+  <nz-form-control nz-form-item>
+    <nz-form-control [nzValidateStatus]="validateForm.controls.userName">
       <nz-input formControlName="userName" [nzPlaceHolder]="'Username'" [nzSize]="'large'">
         <ng-template #prefix>
           <i class="anticon anticon-user"></i>
         </ng-template>
       </nz-input>
-      <div nz-form-explain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">Please input your username!</div>
-    </div>
-  </div>
+      <nz-form-explain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">Please input your username!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-control>
   <div nz-form-item>
-    <div nz-form-control [nzValidateStatus]="validateForm.controls.password">
+    <nz-form-control [nzValidateStatus]="validateForm.controls.password">
       <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'Password'" [nzSize]="'large'">
         <ng-template #prefix>
           <i class="anticon anticon-lock"></i>
         </ng-template>
       </nz-input>
       <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">Please input your Password!</div>
-    </div>
+    </nz-form-control>
   </div>
   <div nz-form-item>
     <div nz-form-control>

@@ -2,7 +2,6 @@ import { Component, OnInit  } from '@angular/core';
 import { Router, NavigationEnd, RouteConfigLoadStart } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import {Http} from '@angular/http';
-import {TranslateService, LangChangeEvent} from 'ng2-translate';
 
 @Component({
     selector: 'app-layout',
@@ -65,8 +64,7 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     router: Router,
-    private _message: NzMessageService,
-    public translate: TranslateService) {
+    private _message: NzMessageService) {
     router.events.subscribe(evt => {
       if (!this.isFetching && evt instanceof RouteConfigLoadStart)
         this.isFetching = true;
@@ -79,16 +77,13 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.translate.setDefaultLang('zh-CN');              // 2 设置默认语言
-    this.lang = this.translate.getBrowserCultureLang(); // 3 检测当前浏览器语言
+    this.lang ='zh-CN';
     localStorage.setItem('browserLang', this.lang);     // 4 保存当前浏览器语言之本地存储  ----》供后续手动切换语言版本
-    this.translate.use(this.lang);                    // 5 根据检测到语言，初始化语言版本
   }
 
   changeLang () {                                       // 6 手动切换语言版本
     this.lang = this.lang === 'en' ? 'zh-CN' : 'en';
     localStorage.setItem('browserLang', this.lang);
-    this.translate.use(this.lang);
   }
   setSelected(url: string) {
     if (!url) return;
